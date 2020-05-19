@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test{
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="vDom.js"></script>
+    <script>
+        let vnode = createElement('div', { id: 'test' }, [
+            createElement('p', { key: 'a', style: { color: 'red' } }, '节点1'),
+            createElement('p', { key: 'b', class: 'test' }, '节点2'),
+            createElement('p', { key: 'c', '@click': () => { alert('vdom') } }, '节点3'),
+            createElement('p', { key: 'd', style: { color: 'red' } }, '节点4'),
+            createElement('div', { key: 'e', style: { color: 'red' } }, [
+            createElement('div', { key: 'f', style: { color: 'green' } }, '节点5'),
+            ]),
+        ])
+
+        setTimeout(() => {
+            vnode = createElement('div', { style:{border:'1px solid red'} }, [
+            createElement('p', {  style: { color: 'green' } }, '节点3'),
+            createElement('div', { class: 'test' }, '节点2'),
+            createElement('span', { key: 'i', style: { color: 'yellow' } }, '节点1'),
+            createElement('div', { key: 'g', style: { color: 'red' } }, '节点4'),
+        ])
+        render(vnode, document.getElementById('app'))
+        }, 2000);
+        render(vnode, document.getElementById('app'))
+    </script>
+</body>
+
+</html> 
